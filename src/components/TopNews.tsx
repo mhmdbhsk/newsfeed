@@ -21,6 +21,7 @@ const TopNews = () => {
           '&::-webkit-scrollbar': {
             display: 'none',
           },
+          scrollbarWidth: 'none',
         }}
       >
         {isError ? (
@@ -30,11 +31,13 @@ const TopNews = () => {
         ) : data ? (
           data?.articles.map((item, index) => (
             <Box
+              key={index}
               w="80%"
               style={{
                 marginLeft: index === 0 ? 20 : 0,
                 paddingRight: 20,
                 flex: '0 0 auto',
+                paddingBottom: 16,
               }}
             >
               <NewsCard data={item} horizontal={true} />
@@ -43,6 +46,7 @@ const TopNews = () => {
         ) : (
           [1, 2, 3].map((index) => (
             <Box
+              key={index}
               w="80%"
               style={{
                 paddingLeft: index === 1 ? 20 : 0,
@@ -50,7 +54,7 @@ const TopNews = () => {
                 flex: '0 0 auto',
               }}
             >
-              <Skeleton height={250} />
+              <Skeleton height={250} mb={4} />
             </Box>
           ))
         )}

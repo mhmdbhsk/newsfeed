@@ -1,7 +1,7 @@
-import React from 'react';
+import { Fragment } from 'react';
 
 const NewsDetails = () => {
-  return <div></div>;
+  return <Fragment></Fragment>;
 };
 
 export default NewsDetails;

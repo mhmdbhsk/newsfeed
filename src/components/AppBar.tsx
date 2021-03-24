@@ -22,15 +22,8 @@ const AppBar = () => {
             size="40px"
             bg={colorMode === 'light' ? 'gray.200' : 'gray.700'}
             color={colorMode === 'light' ? '#484848' : 'gray.100'}
-            mr={4}
-          >
-            <BiSearch />
-          </Circle>
-          <Circle
-            size="40px"
-            bg={colorMode === 'light' ? 'gray.200' : 'gray.700'}
-            color={colorMode === 'light' ? '#484848' : 'gray.100'}
             onClick={toggleColorMode}
+            cursor="pointer"
           >
             {colorMode !== 'light' ? <BiSun /> : <BiMoon />}
           </Circle>

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { NewsData } from '@dto';
 
 export const axiosInstance = axios.create({
   baseURL: process.env.NEXT_PUBLIC_BASE_URL,

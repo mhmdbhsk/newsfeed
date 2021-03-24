@@ -9,13 +9,14 @@ import { Skeleton } from '@chakra-ui/skeleton';
 import { Button } from '@chakra-ui/button';
 import { CircularProgress } from '@chakra-ui/progress';
 
-interface DataType {
-  articles: NewsData[];
+interface PageType {
+  articles?: NewsData[];
 }
 
 const Category = () => {
   const [category, setCategory] = useState('technology');
-  const [pageSize, setPageSize] = useState(10);
+  const pageSize = 10;
+  const [page, setPage] = useState(1);
 
   const listCategory = [
     { id: 1, name: 'Technology' },
@@ -30,30 +31,19 @@ const Category = () => {
     setCategory(data);
   };
 
-  const handlePageSize = () => {
-    setPageSize((old) => old + 1);
+  const handlePage = () => {
+    setPage((old) => old + 1);
+    fetchNextPage({ pageParam: page + 1 });
   };
 
   useEffect(() => {
-    setPageSize(10);
+    setPage(1);
   }, [category]);
 
-  // const { data, isError, isLoading, isFetching, isSuccess } = useQuery(
-  //   ['category', category, pageSize, element],
-  //   async () => await getCategory(category, pageSize)
-  // );
-
-  const {
-    status,
-    data,
-    error,
-    isFetching,
-    isFetchingNextPage,
-  } = useInfiniteQuery(['category', category, pageSize], async () => {
-    await getCategory(category, pageSize);
-  });
-
-  console.log('Key =>>', data);
+  const { status, data, error, isFetching, fetchNextPage } = useInfiniteQuery(
+    ['category', category],
+    ({ pageParam }) => getCategory(category, pageParam, pageSize)
+  );
 
   return (
     <Fragment>
@@ -86,33 +76,58 @@ const Category = () => {
         </TabList>
         <TabPanels>
           {listCategory.map(() => (
-            <TabPanel p={5}>
+            <TabPanel
+              p={5}
+              pt={0}
+              display="flex"
+              flexDir="column"
+              justifyContent="center"
+            >
               {status === 'loading' ? (
-                [1, 2, 3].map(() => <Skeleton height={250} mb={4} />)
+                [1, 2, 3].map((index) => (
+                  <Skeleton height={250} mt={4} key={index} />
+                ))
               ) : status === 'error' ? (
-                <Flex h="10vh" align="center" justify="center">
-                  <Text>Failed to fetching data</Text>
-                </Flex>
+                <Fragment>
+                  {data?.pages.map((page) =>
+                    page?.articles.map((item, index) => (
+                      <Box mt={5} key={index}>
+                        <NewsCard data={item} />
+                      </Box>
+                    ))
+                  )}
+                  <Text mt={5} textAlign="center">
+                    Failed to fetching data
+                  </Text>
+                </Fragment>
               ) : (
                 status === 'success' &&
-                data?.articles?.map((item, index) => (
-                  <Box mt={index === 0 ? 0 : 4} key={index}>
-                    <NewsCard data={item} />
-                  </Box>
-                ))
+                data?.pages.map((page) =>
+                  page?.articles.map((item, index) => (
+                    <Box mt={5} key={index}>
+                      <NewsCard data={item} />
+                    </Box>
+                  ))
+                )
               )}
+              <Button
+                onClick={handlePage}
+                disabled={isFetching ? true : page === 10 ? true : false}
+                mt={5}
+              >
+                {status === error ? (
+                  ''
+                ) : isFetching ? (
+                  <Box>
+                    <CircularProgress isIndeterminate size={6} mr={2} />
+                    Fetching
+                  </Box>
+                ) : (
+                  'Load More'
+                )}
+              </Button>
             </TabPanel>
           ))}
-          <Button onClick={handlePageSize} disabled={isFetching ? true : false}>
-            {isFetchingNextPage ? (
-              <Box>
-                <CircularProgress isIndeterminate size={6} mr={2} />
-                Fetching
-              </Box>
-            ) : (
-              'Load More'
-            )}
-          </Button>
         </TabPanels>
       </Tabs>
     </Fragment>
