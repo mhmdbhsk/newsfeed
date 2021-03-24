@@ -9,7 +9,7 @@ interface ResponseType {
 
 export const getCategory = async (category, page, pageSize) => {
   try {
-    const res = await axiosInstance.get<ResponseType>(
+    const res: ResponseType = await axiosInstance.get(
       `/everything?q=${category}&page=${page}&pageSize=${pageSize}`
     );
     return res;
@@ -20,7 +20,7 @@ export const getCategory = async (category, page, pageSize) => {
 
 export const getTopHeadlines = async () => {
   try {
-    const res = await axiosInstance.get<ResponseType>(
+    const res: ResponseType = await axiosInstance.get(
       `/top-headlines?country=id`
     );
     return res;
