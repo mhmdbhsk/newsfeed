@@ -29,6 +29,13 @@
 5. Run `yarn dev` to start development server
 6. Open `localhost:3000` on browser
 
+### Preview
+|Dark|Light|
+|---|---|
+|![image](https://user-images.githubusercontent.com/34903088/112342908-3d677a80-8cf5-11eb-9de6-a97a71f3b633.png)|![image](https://user-images.githubusercontent.com/34903088/112342927-40fb0180-8cf5-11eb-8f49-4496c902eda8.png)|
+
 Don't forget to Star ⭐ this project and follow me 🤙
 
 Notes : The demo URL get CORS from API for now
+
+
