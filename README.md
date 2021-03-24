@@ -28,5 +28,4 @@
 4. Run `yarn dev` to start development server
 5. Open `localhost:3000` on browser
 
-Feel free to fork and modified the source code.
 Don't forget to Star ⭐ this project and follow me 🤙
