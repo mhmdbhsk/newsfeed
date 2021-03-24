@@ -47,7 +47,7 @@ const Category = () => {
 
   return (
     <Fragment>
-      <Tabs variant="soft-rounded" colorScheme="green" mt={4}>
+      <Tabs variant="soft-rounded" colorScheme="gray">
         <TabList>
           <Flex
             flexWrap="nowrap"
@@ -59,6 +59,7 @@ const Category = () => {
               '&::-webkit-scrollbar': {
                 display: 'none',
               },
+              scrollbarWidth: 'none',
             }}
           >
             {listCategory.map((item, index) => (

@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <Container>
       <Head>
-        <title>NewsFeed - Beranda</title>
+        <title>NewsFeed - Home</title>
       </Head>
       <AppBar />
       <TopNews />
