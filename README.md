@@ -24,8 +24,9 @@
 ### How to Run
 1. Clone this repository
 2. Change directory onto this project folder
-3. Run `yarn` or `npm install` to install the depedencies
-4. Run `yarn dev` to start development server
-5. Open `localhost:3000` on browser
+3. Make new `.env` file and copy content from `.env.example` to `.env`. Then configure the API key
+4. Run `yarn` or `npm install` to install the depedencies
+5. Run `yarn dev` to start development server
+6. Open `localhost:3000` on browser
 
 Don't forget to Star ⭐ this project and follow me 🤙
