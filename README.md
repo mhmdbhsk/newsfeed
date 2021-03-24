@@ -30,3 +30,5 @@
 6. Open `localhost:3000` on browser
 
 Don't forget to Star ⭐ this project and follow me 🤙
+
+Notes : The demo URL get CORS from API for now
